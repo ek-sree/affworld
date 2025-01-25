@@ -7,6 +7,8 @@ import session from 'express-session'
 import cookieParser from 'cookie-parser'
 import taskRouter from './app/router/taskRepository.js';
 import postRouter from './app/router/postRepository.js';
+import { limiter } from './utils/rateLimitter.js';
+import helmet from 'helmet';
 
 const app = express()
 
@@ -33,6 +35,8 @@ app.use(cors({
 }));
 
 app.use(cookieParser());
+app.use(helmet());
+app.use(limiter)
 
 app.use('/api/auth', authRouter)
 app.use('/api/task', taskRouter)
