@@ -4,11 +4,13 @@
 
 This project is a full-stack task management and social post application. Users can authenticate through email verification via OTP or Google OAuth and manage tasks with drag-and-drop functionality (using react-dnd) between columns such as Pending, In Progress, and Done. Additionally, users can create and delete tasks or posts with titles, descriptions, and images.
 
-The project utilizes React, TypeScript, Redux, Vite, and Tailwind CSS on the frontend, and Node.js, Express, and MongoDB on the backend. Key backend features include rate limiting, helmet for security, cloudinary for image storage, refresh and access token handling, and clean architecture.
+The project utilizes React, TypeScript, Redux, Vite, and Tailwind CSS on the frontend, and Node.js, Express,Typescript and MongoDB on the backend. Key backend features include rate limiting, helmet for security, cloudinary for image storage, refresh and access token handling, and clean architecture.
+
+Deployed froentend on **Netlify** and backend on **Render**
 
 **Deployed URLs:**
 
-``Frontend``: https://remarkable-lily-6b5367.netlify.app
+``Deployed url``: https://remarkable-lily-6b5367.netlify.app
 
 ``Postman API Documentation``: https://documenter.getpostman.com/view/33930780/2sAYQgfnXJ
 
@@ -23,6 +25,8 @@ The project utilizes React, TypeScript, Redux, Vite, and Tailwind CSS on the fro
 - State management with Redux Toolkit and custom hooks for dispatch.
 
 - Reusable components, such as input fields.
+
+- Google OAuth for authentication
 
 - Protected routes for authenticated users (private and public routes).
 
@@ -73,84 +77,95 @@ The project utilizes React, TypeScript, Redux, Vite, and Tailwind CSS on the fro
 - Backend and frontend validation for all authentication and task-related features.
 
 
-## Steps to Run the Project
+# Steps to Run the Project
 
-# Frontend
+## Frontend
 
 ``Clone the repository``:
-```bash git clone https://github.com/ek-sree/affworld.git```
 
-Navigate to the client directory:
+git clone https://github.com/ek-sree/affworld.git
+
+``Navigate to the client directory``:
+
 cd client
 
-Install dependencies:
+``Install dependencies``:
+
 npm install
 
-Start the development server:
+``Start the development server``:
+
 npm run dev
 
 
 
-Backend
+## Backend
 
-Navigate to the server directory:
+``Navigate to the server directory``:
+
 cd server
 
-Install dependencies:
+``Install dependencies``:
+
 npm install
 
-Start the development server:
+``Start the development server``:
+
 npm run dev
 
-(Optional) Build the backend:
+```(Optional) Build the backend```:
+
 npm run build
 
 
-Run the built server:
+```Run the built server```:
+
 npm start
 
 
 
-Notes
+**Notes**
 
 The backend does not require additional TypeScript dev dependencies as they are already included.
 
-Ensure you have a .env file configured for both the frontend and backend.
+Ensure you have a **.env** file configured for both the frontend and backend.
 
 For image uploads, make sure your Cloudinary account is set up and credentials are added to the .env file.
 
 
 
-Key Technologies
+* # **Key Technologies**
 
-Frontend
+## Frontend
 
-React
+1. React
 
-TypeScript
+2. TypeScript
 
-Redux Toolkit
+3. Redux Toolkit
 
-Tailwind CSS
+4. Tailwind CSS
 
-React-dnd for drag-and-drop functionality
+5. React-dnd for drag-and-drop functionality
 
-Backend
+6. Google OAuth
 
-Node.js
+## Backend
 
-Express
+1. Node.js
 
-TypeScript
+2. Express
 
-MongoDB
+3. TypeScript
 
-JWT authentication
+4. MongoDB
 
-Helmet for security
+5. JWT authentication
 
-Rate limiter to prevent abuse
+6. Helmet for security
 
-Cloudinary for image storage
+7. Rate limiter to prevent abuse
+
+8. Cloudinary for image storage
 
 Feel free to explore the live project, APIs, and GitHub repository for further insights!
