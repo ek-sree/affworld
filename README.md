@@ -6,79 +6,79 @@ This project is a full-stack task management and social post application. Users 
 
 The project utilizes React, TypeScript, Redux, Vite, and Tailwind CSS on the frontend, and Node.js, Express, and MongoDB on the backend. Key backend features include rate limiting, helmet for security, cloudinary for image storage, refresh and access token handling, and clean architecture.
 
-Deployed URLs:
+**Deployed URLs:**
 
-Frontend: https://remarkable-lily-6b5367.netlify.app
+``Frontend``: https://remarkable-lily-6b5367.netlify.app
 
-Postman API Documentation: https://documenter.getpostman.com/view/33930780/2sAYQgfnXJ
+``Postman API Documentation``: https://documenter.getpostman.com/view/33930780/2sAYQgfnXJ
 
-GitHub Repository: https://github.com/ek-sree/affworld.git
+``GitHub Repository``: https://github.com/ek-sree/affworld.git
 
-Features
+# Features
 
-Frontend:
+## Frontend:
 
-Built with Vite, React, TypeScript, and Tailwind CSS.
+- Built with Vite, React, TypeScript, and Tailwind CSS.
 
-State management with Redux Toolkit and custom hooks for dispatch.
+- State management with Redux Toolkit and custom hooks for dispatch.
 
-Reusable components, such as input fields.
+- Reusable components, such as input fields.
 
-Protected routes for authenticated users (private and public routes).
+- Protected routes for authenticated users (private and public routes).
 
-React-dnd for drag-and-drop task management.
+- React-dnd for drag-and-drop task management.
 
-User authentication:
+- User authentication:
 
-Email verification via OTP.
+- Email verification via OTP.
 
-Google OAuth integration.
+- Google OAuth integration.
 
-Forgot password functionality.
+- Forgot password functionality.
 
-Task management:
+`Task management`:
 
-Create tasks with titles and descriptions.
++ Create tasks with titles and descriptions.
 
-Drag and drop tasks across columns to update status.
++ Drag and drop tasks across columns to update status.
 
-Delete specific tasks.
++ Delete specific tasks.
 
-Post creation:
++ Post creation:
 
-Users can create posts with images and titles.
++ Users can create posts with images and titles.
 
-Posts are visible to all users.
++ Posts are visible to all users.
 
-Backend:
+## Backend:
 
-Built with Node.js, Express, and TypeScript.
+- Built with Node.js, Express, and TypeScript.
 
-MongoDB for data storage.
+- MongoDB for data storage.
 
-JWT authentication with refresh and access tokens.
+- JWT authentication with refresh and access tokens.
 
-Security features:
+- Security features:
 
-Rate limiter to prevent abuse.
+- Rate limiter to prevent abuse.
 
-Helmet for securing HTTP headers.
+- Helmet for securing HTTP headers.
 
-Image upload using Cloudinary and Multer middleware.
+- Image upload using Cloudinary and Multer middleware.
 
-Error handling middleware.
+- Error handling middleware.
 
-Nodemailer for sending OTP emails.
+- Nodemailer for sending OTP emails.
 
-Backend and frontend validation for all authentication and task-related features.
+- Backend and frontend validation for all authentication and task-related features.
 
 
-Steps to Run the Project
+## Steps to Run the Project
 
-Frontend
+# Frontend
 
-Clone the repository:
-git clone https://github.com/ek-sree/affworld.git
+``Clone the repository``:
+```bash git clone https://github.com/ek-sree/affworld.git```
 
 Navigate to the client directory:
 cd client
