@@ -8,6 +8,9 @@ The project utilizes React, TypeScript, Redux, Vite, and Tailwind CSS on the fro
 
 Deployed froentend on **Netlify** and backend on **Render**
 
+## **Note !**:
+This application is deployed using the Render Free Tier. The initial load may take some time due to rendering limitations. If you encounter any delay, please refresh the page or copy and paste the deployed URL again to ensure the application loads properly.
+
 **Deployed URLs:**
 
 ``Deployed url``: https://remarkable-lily-6b5367.netlify.app
