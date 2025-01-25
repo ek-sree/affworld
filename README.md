@@ -82,8 +82,9 @@ Deployed froentend on **Netlify** and backend on **Render**
 ## Frontend
 
 ``Clone the repository``:
-
+```bash
 git clone https://github.com/ek-sree/affworld.git
+```
 
 ``Navigate to the client directory``:
 
@@ -91,7 +92,7 @@ cd client
 
 ``Install dependencies``:
 
-```bash
+
 npm install
 
 ``Start the development server``:
