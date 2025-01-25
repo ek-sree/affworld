@@ -81,6 +81,9 @@ useEffect(() => {
       const response = await Axios.post(AUTH_ENDPOINTS.OTPVERIFY, {
         otp: otpValue,email
       });
+      if(response.status==200){
+        navigate('/newPassword')
+      }
       if(response.status==201){
         localStorage.removeItem('email')
        handleAuthSuccess({
@@ -107,7 +110,7 @@ useEffect(() => {
   };
 
 
-  const handleResendOtp = async () => {
+  const handleResendOtp = async () => {    
     if (timer > 0) return; 
   
     setLoading(true);

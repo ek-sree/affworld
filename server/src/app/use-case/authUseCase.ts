@@ -7,7 +7,7 @@ import { validateEmail, validateName, validateOtp, validatePassword } from "../.
 import emailService from "../../services/emailService.js";
 import { handleError } from "../../middleware/errorMiddleware.js";
 import { generateTokens } from "../../utils/generateTokens.js";
-import { comparePassword } from "../../utils/hashedPassword.js";
+import { comparePassword, hashedPassword } from "../../utils/hashedPassword.js";
 import { OAuth2Client } from "google-auth-library";
 import config from "../../config/index.js";
 
@@ -30,7 +30,6 @@ export default class AuthUseCase{
                 return{status: StatusCode.Conflict, message:"Email already exist"}
             }
             const otp = generateOtp()
-            console.log("otpppppp?");
 
             const data  = await authRepo.saveOtp(email,otp,name,password)
             if(!data){
@@ -77,7 +76,6 @@ export default class AuthUseCase{
         try {
             const otpValidate = validateOtp(otp)
             const emailValidate = validateEmail(email)
-            console.log("sss",otp,email);
             
             if(!otpValidate || !emailValidate){
                 return{status:StatusCode.BadRequest, message:"Credientials are missing"}
@@ -92,8 +90,21 @@ export default class AuthUseCase{
             const otpExpirtTime = 60;
             if(timeDifference > otpExpirtTime || otp!==otpData.otp){
                 return {status:StatusCode.BadRequest, message:"Otp has invalid"}
+            }            
+            if(otpData && otpData.verifyType=='forgotPassword'){
+                authRepo.deleteTempDataInBackground(email);
+                return{status:StatusCode.OK, message:"Email verified for forgot password"}
             }
-            const data = await authRepo.createUser(otpData)
+
+            if(!otpData.name || !otpData.password){
+                return{status:StatusCode.InternalServerError, message:"Internal server error"}
+            }
+            const userData: IUser = {
+                name: otpData.name,
+                email: otpData.email,
+                password: otpData.password,
+              };
+            const data = await authRepo.createUser(userData)
             if(!data || !data._id){
                 return{status:StatusCode.BadRequest, message:"Internal server error, Data not saved"}
             }
@@ -131,22 +142,17 @@ export default class AuthUseCase{
 
     loginGoogle=async(token:string):Promise<IAuthResponse>=>{
         try {
-            const ticket = await client.verifyIdToken({
-                idToken:token,
-                audience:config.CLIENT_ID
-            })
+            const ticket = await client.verifyIdToken({idToken:token,audience:config.CLIENT_ID})
             const payload = ticket.getPayload()
             const email=payload?.email
             const name=payload?.name
             const googleId=payload?.sub
-
             
             if(!email || !name || !googleId){
                 return{status:StatusCode.InternalServerError,  message:"Internal server error, Credientials not found"}
             }
             const existingUser = await authRepo.findByEmail(email)
             if(existingUser && existingUser._id){
-                console.log("sssssssssss---------");
                 
             const { accessToken, refreshToken } = generateTokens(existingUser._id.toString());
             return {status: StatusCode.OK,message: "Logged in successfully",data: existingUser,accessToken,refreshToken}
@@ -162,6 +168,50 @@ export default class AuthUseCase{
         } catch (error) {
             console.log("Error occured login-google user use-case");
             return handleError(error, "An error occurred while login google otp");
+        }
+    }
+
+    forotPassword= async(email:string,verifyType:string): Promise<IResponse & {email?:string}>=>{
+        try {
+            const emailValidate = validateEmail(email)
+            if(!emailValidate){
+                return {status:StatusCode.BadRequest, message:"Email is invalid"}
+            }
+            if(!verifyType || verifyType!=='forgotPassword'){
+                return{status:StatusCode.BadRequest, message:"Credientials are missing"}
+            }
+            const otp = generateOtp()
+            const sendMail = emailService.sendOtpEmail(email,otp)
+            if(!sendMail){
+                return{status:StatusCode.InternalServerError, message:"Otp send email failed"}
+            }
+            const data  = await authRepo.saveOtp(email,otp,undefined,undefined,verifyType)
+            if(!data){
+                return{status:StatusCode.InternalServerError, message:"Internal server error, Try later"}
+            }
+            return{status:StatusCode.OK, message:"Otp send successfully",email}
+        } catch (error) {
+            console.log("Error occured forgotPass user use-case");
+            return handleError(error, "An error occurred while forgot password");
+        }
+    }
+
+    changePassword=async(password:string, email:string):Promise<IResponse>=>{
+        try {
+            const passwordValidate = validatePassword(password)
+            const emailValidate = validateEmail(email)
+            if(!passwordValidate || !emailValidate){
+                return{status:StatusCode.BadRequest, message:"Invalid credientials"}
+            }
+            const hashPassword = await hashedPassword(password)
+            const data = await authRepo.updatePassowrd(hashPassword,email)
+            if(!data){
+                return{status:StatusCode.InternalServerError, message:"Password not updated error occured"}
+            }
+            return{status:StatusCode.OK, message:"password Updated"}
+        } catch (error) {
+            console.log("Error occured change password use-case");
+            return handleError(error, "An error occurred while change password");
         }
     }
 }

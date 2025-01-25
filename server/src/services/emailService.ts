@@ -15,13 +15,9 @@ class EmailService {
   }
 
   async sendOtpEmail(email: string, otp: string): Promise<void> {
-    const companyLogoUrl = 'https://smallseotools.com/text-to-image/'; 
 
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
-        <div style="text-align: center;">
-          <img src="${companyLogoUrl}" alt="Company Logo" style="width: 150px; margin-bottom: 20px;">
-        </div>
         <h2 style="color: #0056b3; text-align: center;">Your OTP Code</h2>
         <p>Hi,</p>
         <p>We received a request to verify your email address. Use the OTP below to complete the verification process:</p>

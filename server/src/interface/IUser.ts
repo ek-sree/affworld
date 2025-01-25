@@ -10,7 +10,7 @@ export interface IUser{
 }
 
 
-export interface IOtp extends IUser{
+export interface IOtp extends ITempUserData{
     otp:string;
     otpCreatedAt:Date;
 }
@@ -22,9 +22,11 @@ export interface IAuthResponse extends IResponse{
 }
 
 export interface ITempUserData{
+    _id?: string | Types.ObjectId;
     name?:string;
     email:string;
     password?:string;
+    verifyType?:string;
     otp:string;
     otpCreatedAt:Date
 }

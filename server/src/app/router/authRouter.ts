@@ -12,6 +12,8 @@ authRouter.post('/resendOtp', authController.resendOtp);
 authRouter.post('/logout', authController.logout);
 authRouter.post('/login', authController.login);
 authRouter.post('/google-login', authController.loginGoogle)
+authRouter.post('/forgotPass', authController.forGotPass)
+authRouter.post('/reset-password', authController.changePassword)
 
 authRouter.post('/refresh-token', refreshTokenHandler)
 

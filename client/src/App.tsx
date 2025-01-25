@@ -1,5 +1,4 @@
 import { GoogleOAuthProvider } from '@react-oauth/google'
-import './App.css'
 import UserRouter from './Router/UserRoute'
 
 function App() {

@@ -17,12 +17,15 @@ export default class AuthRepository{
         }
     }
 
-    saveOtp=async( email:string, otp:string ,name?:string, password?:string, ): Promise<string | null>=>{
-        try {
+    saveOtp=async( email:string, otp:string ,name?:string, password?:string, verifyType?:string ): Promise<string | null>=>{
+        try {            
             const existUser = await tempUserModel.findOne({email});
             if(existUser){
                 existUser.otp = otp
                 existUser.otpCreatedAt= new Date();
+                if(verifyType === 'forgotPassword') {
+                    existUser.name = undefined;
+                }
                 const savedExistData = await existUser.save()
                 if(!savedExistData){
                     return null
@@ -31,14 +34,20 @@ export default class AuthRepository{
             }
             
             const newTempUserData: ITempUserData = {
-                name,
                 email,
                 otp,
                 otpCreatedAt:new Date()
             }
+                        if(name && verifyType !== 'forgotPassword'){
+                newTempUserData.name = name
+            }
+            if(verifyType){
+                newTempUserData.verifyType = verifyType
+            }
+            
             if(password){
                 const hashPassword = await hashedPassword(password)
-                newTempUserData.password=hashPassword
+                newTempUserData.password = hashPassword
             }
             const newTempUser = new tempUserModel(newTempUserData)
             const savedData = await newTempUser.save()
@@ -85,27 +94,21 @@ export default class AuthRepository{
         }
     }
 
-    // createUserGoogle=async(name:string, email:string,password:string):Promise<IUser | null>=>{
-    //     try {
-    //         const userExist = await UserModel.findOne({email})
-    //         if(userExist){
-    //             return userExist
-    //         }
-    //         const newUser = new UserModel({
-    //             name,
-    //             email,
-    //             password
-    //         })
-    //         const savedUser = await newUser.save()
-    //         if(!savedUser){
-    //             return null
-    //         }
-    //         return savedUser
-    //     } catch (error) {
-    //         console.log("Error in saving via google", error);
-    //         return null
-    //     }
-    // }
+
+    updatePassowrd=async(password:string,email:string):Promise<IUser | null>=>{
+        try {
+            const user = await UserModel.findOne({email})
+            if(!user){
+                return null
+            }
+            user.password=password
+            const savedPassword = await user.save()
+            return savedPassword
+        } catch (error) {
+            console.log("Error in changing password", error);
+            return null
+        }
+    }
 
     public async deleteTempDataInBackground(email: string): Promise<void> {
         (async () => {

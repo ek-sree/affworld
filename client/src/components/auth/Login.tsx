@@ -122,9 +122,11 @@ const Login = () => {
           />
 
           <div>
+            <Link to='/email'>
             <p className="text-blue-600 cursor-pointer hover:underline">
               Forgot password?
             </p>
+            </Link>
           </div>
 
           <div className="relative flex justify-center items-center">

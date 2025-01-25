@@ -11,9 +11,7 @@ export default class AuthController{
 
     createUser=async(req:Request, res:Response): Promise<void>=>{
         try {
-            const {name, email, password} = req.body
-            console.log("reacheddd???",name,email,password);
-            
+            const {name, email, password} = req.body            
             const response = await this.authUseCase.register(name,email, password)
             res.status(response.status).json({message:response.message, email})
         } catch (error) {
@@ -25,7 +23,7 @@ export default class AuthController{
     }
 
     resendOtp=async(req:Request, res:Response): Promise<void>=>{
-        try {
+        try {            
             const email = req.body.email
             const response = await this.authUseCase.resendOtp(email)
             res.status(response.status).json({message:response.message, data:response.email})
@@ -39,7 +37,7 @@ export default class AuthController{
     
     verifyOtp=async(req:Request, res:Response): Promise<void>=>{
         try {
-            const {otp,email} = req.body
+            const {otp,email} = req.body            
             const response = await this.authUseCase.otpVerify(otp,email)
             if(response.status==201){
                 res.cookie("refreshToken", response.refreshToken, {
@@ -108,6 +106,32 @@ export default class AuthController{
             res.status(200).json({message:"Cleared token"})
         } catch (error) {
             console.log("Logout error on controller", error);
+            res.status(StatusCode.InternalServerError).json({ 
+                message: "Internal server error" 
+            });
+        }
+    }
+
+    forGotPass=async(req:Request, res:Response): Promise<void>=>{
+        try {
+            const {email,verifyType} = req.body
+            const response = await this.authUseCase.forotPassword(email,verifyType)
+            res.status(response.status).json({message:response.message, email:response.email})
+        } catch (error) {
+            console.log("Forgotpass error on controller", error);
+            res.status(StatusCode.InternalServerError).json({ 
+                message: "Internal server error" 
+            });
+        }
+    }
+
+    changePassword=async(req:Request, res:Response):Promise<void>=>{
+        try {
+            const {password, email} = req.body;            
+            const response = await this.authUseCase.changePassword(password,email)
+            res.status(response.status).json({message:response.message})
+        } catch (error) {
+            console.log("Update password error on controller", error);
             res.status(StatusCode.InternalServerError).json({ 
                 message: "Internal server error" 
             });

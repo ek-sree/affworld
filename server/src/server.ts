@@ -5,6 +5,8 @@ import { connectToDatabase } from '../src/database/mongodb.js';
 import authRouter from './app/router/authRouter.js';
 import session from 'express-session'
 import cookieParser from 'cookie-parser'
+import taskRouter from './app/router/taskRepository.js';
+import postRouter from './app/router/postRepository.js';
 
 const app = express()
 
@@ -26,13 +28,15 @@ app.use(session({
 app.use(cors({
     origin: config.CORS_KEY, 
     credentials: true,              
-    methods: ["POST", "GET", "PUT", "DELETE"], 
+    methods: ["POST", "GET", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"] 
 }));
 
 app.use(cookieParser());
 
 app.use('/api/auth', authRouter)
+app.use('/api/task', taskRouter)
+app.use('/api/post', postRouter)
 
 await connectToDatabase()
 

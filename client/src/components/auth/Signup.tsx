@@ -56,8 +56,6 @@ const Signup = () => {
         password,
       });
       if (response.status == 200) {
-        console.log(response);
-
         localStorage.setItem("email", response.data.email);
         navigate("/otp");
       }

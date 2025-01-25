@@ -58,6 +58,23 @@ export const validateName = (name: string): boolean => {
 };
 
 
+
+export const validateTitle = (title: string): boolean => {
+    const wordCount = title.trim().split(/\s+/).length; // Count words
+    return title.trim().length > 0 && wordCount <= 50;
+};
+
+/**
+ * Validate description
+ * - Ensures the description is less than or equal to 200 words
+ * @param description - The description string to validate
+ * @returns true if valid, false otherwise
+ */
+export const validateDescription = (description: string): boolean => {
+    const wordCount = description.trim().split(/\s+/).length; // Count words
+    return wordCount <= 200;
+};
+
 // /**
 //  * Validate verifyType
 //  * Ensures the input is one of the valid enum values

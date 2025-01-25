@@ -3,9 +3,10 @@ import mongoose, { Document, Schema } from "mongoose";
 interface ITempUserInterface extends Document {
   email: string;
   password?: string; 
-  name:string;
+  name?:string;
   otp: string;
   userId: string;
+  verifyType: string;
   otpCreatedAt: Date;
   createdAt: Date;
 }
@@ -21,17 +22,21 @@ const tempUserSchema: Schema<ITempUserInterface> = new Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: false,
   },
   name:{
     type: String,
-    required: true
+    required: false,
+    default:null
   },
   otp: { 
     type: String, 
     required: true,
     minlength: 4,
     maxlength: 4
+  },
+  verifyType:{
+    type: String,
   },
   otpCreatedAt: {
     type: Date,

@@ -1,11 +1,11 @@
 import mongoose, { Document, Schema, Types } from "mongoose";
 
-interface IUserInterface extends Document {
+export interface IUserInterface extends Document {
   _id: Types.ObjectId;
   name: string;
   email: string;
-  password?: string; // Make password optional
-  googleId?: string; // Store Google ID for Google login
+  password?: string; 
+  googleId?: string; 
   isStatus: boolean;
 }
 

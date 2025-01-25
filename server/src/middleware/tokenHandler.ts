@@ -11,9 +11,7 @@ const refreshTokenExpire = "7d";
 export const refreshTokenHandler = async (req: Request, res: Response): Promise<void> => {
   try {
     const { refreshToken } = req.cookies;
-    if (!refreshToken) {
-        console.log("Reached for refreshToken---->>",refreshKeyToken);
-        
+    if (!refreshToken) {        
       res.status(StatusCode.Unauthorized).json({ message: "Refresh token not provided" });
       return;
     }
