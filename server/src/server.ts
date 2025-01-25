@@ -42,16 +42,6 @@ app.use('/api/post', postRouter)
 await connectToDatabase()
 
 
-if (process.env.NODE_ENV === 'production') {
-    // Serve static files from React app build
-    app.use(express.static(path.join(__dirname, 'client', 'build')));
-
-    // All routes should serve the index.html file for the frontend routing
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-    });
-}
-
 const PORT = config.port
 
 app.listen(PORT,()=>console.log(`Server running on port ${PORT}`))
