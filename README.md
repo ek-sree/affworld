@@ -171,4 +171,15 @@ For image uploads, make sure your Cloudinary account is set up and credentials a
 
 8. Cloudinary for image storage
 
+   ![Screenshot (42)](https://github.com/user-attachments/assets/3e15aa78-2a88-4642-8918-9cbb2689fa82)
+   ![Screenshot (43)](https://github.com/user-attachments/assets/0a92cc3e-21d1-4a61-bef4-725bf1ae7631)
+   ![Screenshot (44)](https://github.com/user-attachments/assets/5e302148-9eda-4184-b331-ce2ed43a9ca0)
+   ![Screenshot (45)](https://github.com/user-attachments/assets/70ecca9b-8d8e-457d-8a25-d39d0648b980)
+   ![Screenshot (46)](https://github.com/user-attachments/assets/fd3368a0-6411-40dd-bb31-334cd18acbd4)
+
+
+
+
+
+
 Feel free to explore the live project, APIs, and GitHub repository for further insights!
