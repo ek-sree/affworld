@@ -14,7 +14,6 @@ Deployed froentend on **Netlify** and backend on **Render**
 
 ``Postman API Documentation``: https://documenter.getpostman.com/view/33930780/2sAYQgfnXJ
 
-``GitHub Repository``: https://github.com/ek-sree/affworld.git
 
 # Features
 
@@ -87,43 +86,45 @@ git clone https://github.com/ek-sree/affworld.git
 ```
 
 ``Navigate to the client directory``:
-
+```bash
 cd client
+```
 
 ``Install dependencies``:
 
-
+```bash
 npm install
+```
 
 ``Start the development server``:
-
+```bash
 npm run dev
-
+```
 
 
 ## Backend
 
 ``Navigate to the server directory``:
-
+```bash
 cd server
-
+```
 ``Install dependencies``:
-
+```bash
 npm install
-
+```
 ``Start the development server``:
-
+```bash
 npm run dev
-
+```
 ```(Optional) Build the backend```:
-
+```bash
 npm run build
-
+```
 
 ```Run the built server```:
-
+```bash
 npm start
-
+```
 
 
 **Notes**
