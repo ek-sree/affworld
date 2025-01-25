@@ -120,7 +120,7 @@ const TaskTable = () => {
         </div>
 
         {loading && (
-          <div className="text-center text-slate-300 mt-4">
+          <div className="text-center text-slate-300 mt-4 animate-pulse">
             Loading tasks...
           </div>
         )}

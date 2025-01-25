@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { isAuthenticated } from '../authCheck';
+import Loading from '../../components/common/Loading';
 
 
 export const PublicRoute: React.FC = () => {
@@ -20,7 +21,7 @@ export const PublicRoute: React.FC = () => {
     }, []);
   
     if (authStatus === null) {
-      return <div>Loading...</div>;
+      return <div><Loading/></div>;
     }
   
     return !authStatus ? <Outlet /> : <Navigate to="/" replace />;

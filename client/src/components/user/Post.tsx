@@ -4,6 +4,7 @@ import AddPostModal from './AddPostModal';
 import { IPost } from '../../interface/IPost';
 import Axios from '../../api/axios/axios';
 import { POST_ENDPOINTS } from '../../api/endpoints/postEndpoints';
+import SkeletonLoading from '../common/SkeletonLoading';
 
 
 const Post = () => {
@@ -56,7 +57,7 @@ return (
         </div>
 
         {loading ? (
-          <p className="text-slate-400 text-center">Loading...</p>
+          <><SkeletonLoading/></>
         ) : posts.length === 0 ? (
           <p className="text-slate-400 text-center text-xl">No posts added yet.Be the first one to add a Post</p>
         ) : (

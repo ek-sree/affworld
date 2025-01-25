@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { isAuthenticated } from '../authCheck';
+import Loading from '../../components/common/Loading';
 
 export const UserPrivateRoute: React.FC = () => {
   const [authStatus, setAuthStatus] = useState<boolean | null>(null);
@@ -21,7 +22,7 @@ export const UserPrivateRoute: React.FC = () => {
 
 
   if (authStatus === null) {
-    return <div>Loading...</div>;
+    return <div><Loading/></div>;
   }
 
 

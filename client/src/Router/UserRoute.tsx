@@ -12,7 +12,6 @@ import NewPassword from "../components/auth/NewPassowrd"
 
 const UserRouter = () => {
  
-
   return (
     <Routes>
       <Route element={<PublicRoute/>}>
